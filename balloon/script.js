@@ -9,10 +9,11 @@ const blowBalloon = (event) => {
         balloon.style.fontSize = `${parseInt(balloon.style.fontSize) / 1.1}px`;
     }
 
-    if (parseInt(balloon.style.fontSize) > 250) {
+    if (parseInt(balloon.style.fontSize) > 1000) {
         balloon.textContent = "💥";
         balloon.removeEventListener('keydown', blowBalloon);
     }
+    event.stopPropagation();
 }
 balloon.addEventListener('keydown', blowBalloon);
 
