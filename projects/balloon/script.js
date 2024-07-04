@@ -2,12 +2,17 @@ const balloon = document.getElementById('balloon');
 
 balloon.focus();
 
-balloon.addEventListener('keydown', event => {
-    if (event.key == 'ArrowUp'){
-        console.log('up');
+const blowBalloon = (event) => {
+    if (event.key == 'ArrowUp'){   
         balloon.style.fontSize = `${parseInt(balloon.style.fontSize) * 1.1}px`;
     } else if (event.key == 'ArrowDown'){
-        console.log('down');
         balloon.style.fontSize = `${parseInt(balloon.style.fontSize) / 1.1}px`;
     }
-});
+
+    if (parseInt(balloon.style.fontSize) > 250) {
+        balloon.textContent = "💥";
+        balloon.removeEventListener('keydown', blowBalloon);
+    }
+}
+balloon.addEventListener('keydown', blowBalloon);
+
